@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.NumberPicker
+import android.widget.TextClock
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isVisible
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +22,20 @@ class MainActivity : AppCompatActivity() {
     }
     private val btnRun: Button by lazy {
         findViewById(R.id.btnRun)
+    }
+
+    //5-2
+    //레이아웃 텍스트뷰(로또번호)6개 연결
+    //리스트를 사용하여 순차적으로 연결하기...
+    private val numTextViewList: List<TextView> by lazy {
+        listOf<TextView>(
+            findViewById<TextView>(R.id.tvNum1st),
+            findViewById<TextView>(R.id.tvNum2nd),
+            findViewById<TextView>(R.id.tvNum3rd),
+            findViewById<TextView>(R.id.tvNum4th),
+            findViewById<TextView>(R.id.tvNum5th),
+            findViewById<TextView>(R.id.tvNum6th)
+        )
     }
 
     //2
@@ -91,9 +108,27 @@ class MainActivity : AppCompatActivity() {
             //넘버피커에서 선택한 숫자가 중복된 값이면 알림 설정
             //전역변수 numPickerSet사용하여 리스트에 중복된 값이 존재하면 추가되지 않고 알림 설정
             if (numPickerSet.contains(numPicker.value)){
-                Toast.makeText(this, "이미 선택한 번호입니다. 다른 번호를 선택하세요.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "이미 선택한 번호입니다.\n다른 번호를 선택하세요.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+
+            //5-2
+            //레이아웃의 선택한 로또번호를 보여주는 텍스트뷰 연결
+            //전역변수로 연결하여 쓰기...
+            //5-3
+            //추가 버튼 클릭 시 레이아웃 연결된 리스트에서 현재 피커set의 위치에 값추가
+            //변수생성하여 텍스트뷰위젯의 위치 인덱스 저장
+            val textView = numTextViewList[numPickerSet.size]
+            //5-4
+            //현재 위치를 가지고 있는 텍스트뷰 위젯 보여지게 설정
+            textView.isVisible = true
+            //5-5
+            //텍스트뷰 위젯에 선택된 피커의 값을 문자로 변환해 텍스트로 반환
+            textView.text = numPicker.value.toString()
+
+            //5-6
+            //넘버피커set 리스트에 피커에서 선택한 값 추가...
+            numPickerSet.add(numPicker.value)
 
         }
     }//initBtnAdd()
