@@ -62,6 +62,8 @@ class MainActivity : AppCompatActivity() {
         initBtnRun()
         //5
         initBtnAdd()
+        //6
+        initBtnClear()
 
     }//onCreate
 
@@ -101,14 +103,14 @@ class MainActivity : AppCompatActivity() {
             //선택할 수 있는 번호는 최대 5개가 될 수 있다는 알림 설정
             //전역변수로 numPickerSet 생성하여 사용
             if (numPickerSet.size >= 5){
-                Toast.makeText(this, "번호는 5개까지만 선택할 수 있습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "번호는 5개까지 선택할 수 있습니다.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             //5-1-3
             //넘버피커에서 선택한 숫자가 중복된 값이면 알림 설정
             //전역변수 numPickerSet사용하여 리스트에 중복된 값이 존재하면 추가되지 않고 알림 설정
             if (numPickerSet.contains(numPicker.value)){
-                Toast.makeText(this, "이미 선택한 번호입니다.\n다른 번호를 선택하세요.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "이미 선택한 번호입니다.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -132,6 +134,24 @@ class MainActivity : AppCompatActivity() {
 
         }
     }//initBtnAdd()
+
+    //6
+    //초기화버튼 코드 작성
+    private fun initBtnClear(){
+        btnClear.setOnClickListener {
+            //6-1
+            //피커set리스트 값을 모두 삭제
+            numPickerSet.clear()
+            //6-2
+            //텍스트뷰를 순차적으로 하나하나 꺼내어 .forEach
+            //안 보이게 변경
+            numTextViewList.forEach {
+                it.isVisible = false
+            }
+            //5-1-1
+            didRun = false
+        }
+    }//initBtnClear()
 
     //4
     //번호를 가지고 있는 리스트 형식의 랜덤번호 생성 함수 작성
