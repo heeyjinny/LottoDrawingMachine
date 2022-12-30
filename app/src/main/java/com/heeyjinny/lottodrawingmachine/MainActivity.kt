@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.NumberPicker
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,6 +27,11 @@ class MainActivity : AppCompatActivity() {
         findViewById(R.id.numPicker)
     }
 
+    //5
+    //예외처리를 위한 전역변수 생성
+    private var didRun = false
+    private var numPickerSet = mutableSetOf<Int>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,6 +43,8 @@ class MainActivity : AppCompatActivity() {
 
         //3
         initBtnRun()
+        //5
+        initBtnAdd()
 
     }//onCreate
 
@@ -46,13 +54,49 @@ class MainActivity : AppCompatActivity() {
         //3-1
         //btnRun버튼 클릭 시 실행
         btnRun.setOnClickListener {
+            //5-1-1
+            didRun = true
             //3-2
+            //번호를 가지고 있는 리스트 형식의 랜덤번호 생성 함수를 실행해
             //리스트에 랜덤번호 추가
             val list = getRandomNum()
 
             Log.d("list", list.toString())
         }
     }//initBtnRun()
+
+    //5
+    //btnAdd버튼을 클릭했을 때 설정되는 함수 생성
+    private fun initBtnAdd(){
+        btnAdd.setOnClickListener {
+            //5-1
+            //버튼을 클릭했을 때 예외 3가지 처리
+            //5-1-1
+            //이미 btnRun버튼을 클릭했을 때 초기화하라는 알림 설정
+            //전역변수로 didRun생성하여 false값 저장하여 사용
+            //didRun의 값이 true가 되어있다면 알림 설정
+            if(didRun){
+                Toast.makeText(this, "초기화 후에 시도해주세요.", Toast.LENGTH_SHORT).show()
+                //다시 클릭리스너 메서드 실행하기
+                return@setOnClickListener
+            }
+            //5-1-2
+            //선택할 수 있는 번호는 최대 5개가 될 수 있다는 알림 설정
+            //전역변수로 numPickerSet 생성하여 사용
+            if (numPickerSet.size >= 5){
+                Toast.makeText(this, "번호는 5개까지만 선택할 수 있습니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            //5-1-3
+            //넘버피커에서 선택한 숫자가 중복된 값이면 알림 설정
+            //전역변수 numPickerSet사용하여 리스트에 중복된 값이 존재하면 추가되지 않고 알림 설정
+            if (numPickerSet.contains(numPicker.value)){
+                Toast.makeText(this, "이미 선택한 번호입니다. 다른 번호를 선택하세요.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+        }
+    }//initBtnAdd()
 
     //4
     //번호를 가지고 있는 리스트 형식의 랜덤번호 생성 함수 작성
@@ -78,7 +122,7 @@ class MainActivity : AppCompatActivity() {
         val newList = numList.subList(0, 6)
 
         //4-4
-        //6개의 랜덤된 리스트 오름차순으로 정렬 후 .sorted()
+        //6개의 랜덤된 리스트 오름차순으로 정렬 .sorted()
         //결과 값 리턴
         return newList.sorted()
 
