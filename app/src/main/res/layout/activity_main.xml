@@ -9,13 +9,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tvTitle"
         android:layout_marginTop="50dp"
-        android:textSize="18sp"
+        android:text="@string/tvTitle"
         android:textColor="@color/custom_black"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <NumberPicker
         android:id="@+id/numPicker"
@@ -33,9 +33,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/custom_btnAdd"
         android:text="@string/btnAdd"
         android:textColor="@color/white"
-        android:backgroundTint="@color/custom_btnAdd"
         app:layout_constraintEnd_toStartOf="@+id/btnClear"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,10 +45,10 @@
         android:id="@+id/btnClear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btnClear"
         android:backgroundTint="@color/custom_btnClear"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/btnClear"
         android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnAdd"
         app:layout_constraintTop_toTopOf="@+id/btnAdd" />
 
@@ -57,22 +57,22 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/btnRun"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnAdd"
-        app:layout_constraintBottom_toTopOf="@+id/btnRun">
+        app:layout_constraintTop_toBottomOf="@id/btnAdd">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tvSubTitle"
             android:textColor="@color/custom_black"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
 
         <LinearLayout
-            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -82,9 +82,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="1"
                 android:background="@drawable/circle_yellow"
                 android:gravity="center"
+                android:text="1"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -96,9 +96,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="1"
                 android:background="@drawable/circle_blue"
                 android:gravity="center"
+                android:text="1"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -110,9 +110,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="1"
                 android:background="@drawable/circle_red"
                 android:gravity="center"
+                android:text="1"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -124,9 +124,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="1"
                 android:background="@drawable/circle_gray"
                 android:gravity="center"
+                android:text="1"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -140,8 +140,8 @@
                 android:layout_margin="5dp"
                 android:background="@drawable/circle_green"
                 android:gravity="center"
-                android:textColor="@color/white"
                 android:text="1"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:visibility="gone"
@@ -154,8 +154,8 @@
                 android:layout_margin="5dp"
                 android:background="@drawable/circle_yellow"
                 android:gravity="center"
-                android:textColor="@color/white"
                 android:text="1"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:visibility="gone"
@@ -172,11 +172,11 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/custom_btnRun"
         android:text="@string/btnRun"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/custom_btnRun"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
