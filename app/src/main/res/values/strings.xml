@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">로또번호추첨</string>
     <string name="tvTitle">[로또 번호 추첨하기]</string>
-    <string name="tvSubTitle">이번 회차 1등 번호는...🍀</string>
+    <string name="tvSubTitle">이번 회차 1등 예상번호는...🍀</string>
     <string name="btnAdd">고정 번호 추가</string>
     <string name="btnClear">초기화</string>
-    <string name="btnRun">자동 생성 시작</string>
+    <string name="btnRun">자동 생성하기</string>
 </resources>

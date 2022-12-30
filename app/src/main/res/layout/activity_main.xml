@@ -34,6 +34,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
         android:text="@string/btnAdd"
+        android:textColor="@color/white"
         android:backgroundTint="@color/custom_btnAdd"
         app:layout_constraintEnd_toStartOf="@+id/btnClear"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -47,6 +48,7 @@
         android:text="@string/btnClear"
         android:backgroundTint="@color/custom_btnClear"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/white"
         app:layout_constraintStart_toEndOf="@+id/btnAdd"
         app:layout_constraintTop_toTopOf="@+id/btnAdd" />
 
@@ -174,6 +176,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/white"
         android:backgroundTint="@color/custom_btnRun"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
