@@ -1,5 +1,6 @@
 package com.heeyjinny.lottodrawingmachine
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import android.widget.NumberPicker
 import android.widget.TextClock
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 
 class MainActivity : AppCompatActivity() {
@@ -94,6 +96,10 @@ class MainActivity : AppCompatActivity() {
                 //보여지게 설정
                 textView.text = number.toString()
                 textView.isVisible = true
+
+                //9
+                //숫자에 맞는 백그라운드 설정
+                setNumBackground(number, textView)
             }
 
             //Log.d("list", list.toString())
@@ -144,12 +150,34 @@ class MainActivity : AppCompatActivity() {
             //텍스트뷰 위젯에 선택된 피커의 값을 문자로 변환해 텍스트로 반환
             textView.text = numPicker.value.toString()
 
+            //9
+            //숫자에 맞는 백그라운드 설정
+            setNumBackground(numPicker.value, textView)
+
             //5-6
             //넘버피커set 리스트에 피커에서 선택한 값 추가...
             numPickerSet.add(numPicker.value)
 
         }
     }//initBtnAdd()
+
+    //9
+    //when문을 사용하여 텍스트뷰의 각 값의 범위에 따라 백그라운드 설정
+    //btnAdd와 btnRun에도 필요하기 때문에 함수를 만들어 사용
+    //파라미터로 숫자와 보여주는 뷰인 텍스트뷰를 받는 함수
+    private fun setNumBackground(number: Int, textView: TextView){
+        //9-1
+        //번호에 맞게 공의 색상 변경되도록 설정
+        //drawable에 저장되어있는 도형들은 앱에 저장되어 있기 때문에
+        //ContextCompat을 사용해 가져옴
+        when(number){
+            in 1..10 -> textView.background = ContextCompat.getDrawable(this, R.drawable.circle_yellow)
+            in 11..20 -> textView.background = ContextCompat.getDrawable(this, R.drawable.circle_blue)
+            in 21..30 -> textView.background = ContextCompat.getDrawable(this, R.drawable.circle_red)
+            in 31..40 -> textView.background = ContextCompat.getDrawable(this, R.drawable.circle_gray)
+            else -> textView.background = ContextCompat.getDrawable(this, R.drawable.circle_green)
+        }
+    }//setNumBackground
 
     //6
     //초기화버튼 코드 작성
