@@ -80,7 +80,23 @@ class MainActivity : AppCompatActivity() {
             //리스트에 랜덤번호 추가
             val list = getRandomNum()
 
-            Log.d("list", list.toString())
+            //8
+            //작성된 로또번호 리스트를 텍스트뷰에 띄우기
+            //forEach{}문을 사용하면 몇 번째의 인덱스 값이 넘어오는 지 모름
+            //forEachIndexed{} 사용하여 인덱스 값과 리스트의값(넘버값)을 가져와 사용
+            list.forEachIndexed{ index, number ->
+                //8-1
+                //텍스트뷰 리스트에 저장된 현재 인덱스 값 저장
+                val textView = numTextViewList[index]
+
+                //8-1
+                //리스트에 있는 값을 현재 인덱스의 텍스트뷰에 텍스트 저장후
+                //보여지게 설정
+                textView.text = number.toString()
+                textView.isVisible = true
+            }
+
+            //Log.d("list", list.toString())
         }
     }//initBtnRun()
 
@@ -163,6 +179,14 @@ class MainActivity : AppCompatActivity() {
         //1~45의 숫자를 차례대로 추가.add()한 리스트로 초기화 .apply{}
         val numList = mutableListOf<Int>().apply {
             for (i in 1..45){
+                //7
+                //조건식 추가
+                //이미 선택되어 있는 번호는 랜덤으로 돌리지 않기 위해
+                //만약 numPickSet의 값 중 이미 i의 값이 있을 경우
+                //continue하여 넘버 리스트에 추가하지 않고 다시 반복문 실행
+                if (numPickerSet.contains(i)){
+                    continue
+                }
                 this.add(i)
             }
         }
@@ -174,7 +198,11 @@ class MainActivity : AppCompatActivity() {
         //4-3
         //섞어준 값중 인덱스 0(이상)부터 6(미만)까지, 6개의 숫자 저장하는 변수 생성
         //.subList(0, 6)
-        val newList = numList.subList(0, 6)
+        //7-1
+        //넘버피커에 저장되어 있는 값을 리스트로 반환하여 가져오고...
+        //넘버피커에 선택되어있는 값 개수를 제외한 개수의 랜덤 값 가져와서
+        //서로 합쳐 새로운 리스트 생성
+        val newList = numPickerSet.toList() + numList.subList(0, 6 - numPickerSet.size)
 
         //4-4
         //6개의 랜덤된 리스트 오름차순으로 정렬 .sorted()
